@@ -6,7 +6,6 @@ metadata:
   labels:
     app: {{ .Values.webapp.name   }}
 spec:
-  clusterIP: None
   selector:
     app: {{ .Values.webapp.name   }}
   ports:

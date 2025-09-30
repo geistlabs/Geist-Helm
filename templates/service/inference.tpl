@@ -6,7 +6,6 @@ metadata:
   labels:
     app: {{ .Values.inference.name }}
 spec:
-  clusterIP: None
   selector:
     app: {{ .Values.inference.name }}
   ports:

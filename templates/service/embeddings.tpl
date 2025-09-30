@@ -6,7 +6,6 @@ metadata:
   labels:
     app: {{ .Values.embeddings.name }}
 spec:
-  clusterIP: None
   selector:
     app: {{ .Values.embeddings.name }}
   ports:
