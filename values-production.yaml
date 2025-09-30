@@ -77,6 +77,24 @@ embeddings:
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
+# Webapp Service (webapp.geist.im)
+webapp:
+  name: geist-webapp
+  replicas: 2
+  image:
+    repository: geist/webapp
+    pullPolicy: Always
+    tag: production-latest
+  service:
+    name: geist-webapp
+    port: 3000
+  env:
+    NODE_ENV: production
+    PORT: 3000
+    API_URL: https://api.geist.im
+    INFERENCE_URL: https://inference.geist.im
+    EMBEDDINGS_URL: https://embeddings.geist.im
+
 # Ingress Configuration
 ingress:
   ingressClassName: nginx
@@ -90,3 +108,6 @@ ingress:
   embeddings:
     name: geist-embeddings-ingress
     host: embeddings.geist.im
+  webapp:
+    name: geist-webapp-ingress
+    host: webapp.geist.im
