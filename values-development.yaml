@@ -1,0 +1,92 @@
+# You are editing:
+# DEVELOPMENT
+namespace: development
+
+# API Service (api.geist.im)
+api:
+  name: geist-api
+  replicas: 1
+  image:
+    repository: geist/api
+    pullPolicy: Always
+    tag: development-latest
+  service:
+    name: geist-api
+    port: 8000
+  resources:
+    limits:
+      cpu: "1000m"
+      memory: "2Gi"
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+  env:
+    NODE_ENV: development
+    PORT: 8000
+    API_URL: https://api.geist.im
+    INFERENCE_URL: https://inference.geist.im
+    EMBEDDINGS_URL: https://embeddings.geist.im
+
+# Inference Service (inference.geist.im)
+inference:
+  name: geist-inference
+  replicas: 1
+  image:
+    repository: geist/inference
+    pullPolicy: Always
+    tag: development-latest
+  service:
+    name: geist-inference
+    port: 8001
+  resources:
+    limits:
+      cpu: "2000m"
+      memory: "4Gi"
+    requests:
+      cpu: "1000m"
+      memory: "2Gi"
+  env:
+    NODE_ENV: development
+    PORT: 8001
+    API_URL: https://api.geist.im
+    INFERENCE_URL: https://inference.geist.im
+    EMBEDDINGS_URL: https://embeddings.geist.im
+
+# Embeddings Service (embeddings.geist.im)
+embeddings:
+  name: geist-embeddings
+  replicas: 1
+  image:
+    repository: geist/embeddings
+    pullPolicy: Always
+    tag: development-latest
+  service:
+    name: geist-embeddings
+    port: 8002
+  resources:
+    limits:
+      cpu: "1500m"
+      memory: "3Gi"
+    requests:
+      cpu: "750m"
+      memory: "1.5Gi"
+  env:
+    NODE_ENV: development
+    PORT: 8002
+    API_URL: https://api.geist.im
+    INFERENCE_URL: https://inference.geist.im
+    EMBEDDINGS_URL: https://embeddings.geist.im
+
+# Ingress Configuration
+ingress:
+  ingressClassName: nginx
+  name: geist-development
+  api:
+    name: geist-api-ingress
+    host: api.geist.im
+  inference:
+    name: geist-inference-ingress
+    host: inference.geist.im
+  embeddings:
+    name: geist-embeddings-ingress
+    host: embeddings.geist.im

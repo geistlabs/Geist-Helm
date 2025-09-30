@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.embeddings.name}}
+  namespace: {{.Values.namespace}}
+  labels:
+    app: {{.Values.embeddings.name}}
+spec:
+  replicas: {{.Values.embeddings.replicas}}
+  selector:
+    matchLabels:
+      app: {{.Values.embeddings.name}}
+  template:
+    metadata:
+      labels:
+        app: {{.Values.embeddings.name}}
+    spec:
+      containers:
+        - name: {{.Values.embeddings.name}}
+          image: "{{ .Values.embeddings.image.repository }}:{{ .Values.embeddings.image.tag }}"
+          imagePullPolicy: {{.Values.embeddings.image.pullPolicy}}
+          ports:
+            - containerPort: {{.Values.embeddings.service.port}}
+          resources:
+            limits:
+              cpu: {{.Values.embeddings.resources.limits.cpu}}
+              memory: {{.Values.embeddings.resources.limits.memory}}
+            requests:
+              cpu: {{.Values.embeddings.resources.requests.cpu}}
+              memory: {{.Values.embeddings.resources.requests.memory}}
+          env:
+            - name: NODE_ENV
+              value: {{.Values.embeddings.env.NODE_ENV}}
+            - name: PORT
+              value: {{.Values.embeddings.env.PORT | quote}}
+            - name: API_URL
+              value: {{.Values.embeddings.env.API_URL}}
+            - name: INFERENCE_URL
+              value: {{.Values.embeddings.env.INFERENCE_URL}}
+            - name: EMBEDDINGS_URL
+              value: {{.Values.embeddings.env.EMBEDDINGS_URL}}

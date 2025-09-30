@@ -1,0 +1,20 @@
+# Helm
+charts/
+*.tgz
+
+# Kubernetes
+*.yaml.bak
+*.yml.bak
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
