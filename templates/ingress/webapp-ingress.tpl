@@ -6,9 +6,9 @@ metadata:
   labels:
     app: {{ .Values.webapp.name }} 
   annotations:
-    kubernetes.io/ingress.class: {{ .Values.ingress.ingressClassName }} 
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:
     - host: {{ .Values.ingress.webapp.host }} 
       http:
