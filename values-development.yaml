@@ -45,7 +45,7 @@ embeddings:
   image:
     repository: alo42/embeddings
     pullPolicy: Always
-    tag: development:latest
+    tag: latest
   service:
     name: geist-embeddings
     port: 8002
@@ -63,7 +63,7 @@ webapp:
   image:
     repository: alo42/webapp
     pullPolicy: Always
-    tag: development:latest
+    tag: latest
   service:
     name: geist-webapp
     port: 3000
