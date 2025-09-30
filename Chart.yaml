@@ -1,5 +1,5 @@
 apiVersion: v2
-name: geist-helm
+name: Geist-Helm
 description: Geist AI Helm Chart for backend services deployment
 
 # A chart can be either an 'application' or a 'library' chart.

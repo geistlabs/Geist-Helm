@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{.Values.ingress.embeddings.name}}
-  namespace: {{.Values.namespace}}
+  name: {{ .Values.ingress.embeddings.name }}
+  namespace: {{ .Values.namespace }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -14,15 +14,15 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "180"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "180"
 spec:
-  ingressClassName: {{.Values.ingress.ingressClassName}}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:
-    - host: {{.Values.ingress.embeddings.host}}
+    - host: {{ .Values.ingress.embeddings.host }}
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: {{.Values.embeddings.service.name}}
+                name: {{ .Values.embeddings.service.name }}
                 port:
-                  number: {{.Values.embeddings.service.port}}
+                  number: {{ .Values.embeddings.service.port }}

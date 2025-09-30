@@ -2,28 +2,21 @@
 # DEVELOPMENT
 namespace: development
 
-# API Service (api.geist.im)
-api:
-  name: geist-api
+# Router Service (router.geist.im)
+router:
+  name: geist-router
   replicas: 1
   image:
-    repository: geist/api
+    repository: alo42/router
     pullPolicy: Always
-    tag: development-latest
+    tag: development-1.0.13
   service:
-    name: geist-api
+    name: geist-router
     port: 8000
-  resources:
-    limits:
-      cpu: "1000m"
-      memory: "2Gi"
-    requests:
-      cpu: "500m"
-      memory: "1Gi"
   env:
     NODE_ENV: development
     PORT: 8000
-    API_URL: https://api.geist.im
+    API_URL: https://router.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
@@ -32,23 +25,16 @@ inference:
   name: geist-inference
   replicas: 1
   image:
-    repository: geist/inference
+    repository: alo42/inference
     pullPolicy: Always
     tag: development-latest
   service:
     name: geist-inference
     port: 8001
-  resources:
-    limits:
-      cpu: "2000m"
-      memory: "4Gi"
-    requests:
-      cpu: "1000m"
-      memory: "2Gi"
   env:
     NODE_ENV: development
     PORT: 8001
-    API_URL: https://api.geist.im
+    API_URL: https://router.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
@@ -57,23 +43,16 @@ embeddings:
   name: geist-embeddings
   replicas: 1
   image:
-    repository: geist/embeddings
+    repository: alo42/embeddings
     pullPolicy: Always
     tag: development-latest
   service:
     name: geist-embeddings
     port: 8002
-  resources:
-    limits:
-      cpu: "1500m"
-      memory: "3Gi"
-    requests:
-      cpu: "750m"
-      memory: "1.5Gi"
   env:
     NODE_ENV: development
     PORT: 8002
-    API_URL: https://api.geist.im
+    API_URL: https://router.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
@@ -82,7 +61,7 @@ webapp:
   name: geist-webapp
   replicas: 1
   image:
-    repository: geist/webapp
+    repository: alo42/webapp
     pullPolicy: Always
     tag: development-latest
   service:
@@ -91,7 +70,7 @@ webapp:
   env:
     NODE_ENV: development
     PORT: 3000
-    API_URL: https://api.geist.im
+    API_URL: https://router.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
@@ -99,9 +78,9 @@ webapp:
 ingress:
   ingressClassName: nginx
   name: geist-development
-  api:
-    name: geist-api-ingress
-    host: api.geist.im
+  router:
+    name: geist-router-ingress
+    host: router.geist.im
   inference:
     name: geist-inference-ingress
     host: inference.geist.im
