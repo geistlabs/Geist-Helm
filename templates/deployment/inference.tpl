@@ -15,6 +15,8 @@ spec:
       labels:
         app: {{ .Values.inference.name }}
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: k8s-worker
       containers:
         - name: {{ .Values.inference.name }}
           image: "{{ .Values.inference.image.repository   }}:{{ .Values.inference.image.tag   }}"
