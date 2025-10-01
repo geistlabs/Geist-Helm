@@ -30,10 +30,10 @@ inference:
     tag: latest
   service:
     name: geist-inference
-    port: 8001
+    port: 8080
   env:
     NODE_ENV: development
-    PORT: 8001
+    PORT: 8080
     API_URL: https://api.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
@@ -48,10 +48,10 @@ embeddings:
     tag: latest
   service:
     name: geist-embeddings
-    port: 8002
+    port: 8001
   env:
     NODE_ENV: development
-    PORT: 8002
+    PORT: 8001
     API_URL: https://api.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
