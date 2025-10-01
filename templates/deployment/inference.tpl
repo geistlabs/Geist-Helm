@@ -32,3 +32,10 @@ spec:
               value: {{ .Values.inference.env.INFERENCE_URL }}
             - name: EMBEDDINGS_URL
               value: {{ .Values.inference.env.EMBEDDINGS_URL }}
+          volumeMounts:
+            - name: models-volume
+              mountPath: /models
+      volumes:
+        - name: models-volume
+          hostPath:
+            path: /root/models
