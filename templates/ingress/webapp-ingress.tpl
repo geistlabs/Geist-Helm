@@ -6,7 +6,6 @@ metadata:
   labels:
     app: {{ .Values.webapp.name }} 
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
