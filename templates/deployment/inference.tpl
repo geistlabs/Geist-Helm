@@ -16,7 +16,7 @@ spec:
         app: {{ .Values.inference.name }}
     spec:
       nodeSelector:
-        kubernetes.io/hostname: k8s-worker
+        nvidia.com/gpu: "true"
       containers:
         - name: {{ .Values.inference.name }}
           image: "{{ .Values.inference.image.repository   }}:{{ .Values.inference.image.tag   }}"
@@ -34,6 +34,19 @@ spec:
               value: {{ .Values.inference.env.INFERENCE_URL }}
             - name: EMBEDDINGS_URL
               value: {{ .Values.inference.env.EMBEDDINGS_URL }}
+            # GPU-specific environment variables
+            - name: CUDA_VISIBLE_DEVICES
+              value: "0"
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: "all"
+            - name: GPU_LAYERS
+              value: "8"
+          # GPU resource requests and limits
+          resources:
+            requests:
+              nvidia.com/gpu: 1
+            limits:
+              nvidia.com/gpu: 1
           volumeMounts:
             - name: models-volume
               mountPath: /models
