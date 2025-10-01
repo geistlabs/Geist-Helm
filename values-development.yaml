@@ -2,7 +2,7 @@
 # DEVELOPMENT
 namespace: development
 
-# Router Service (router.geist.im)
+# Router Service (api.geist.im)
 router:
   name: geist-router
   replicas: 1
@@ -16,7 +16,7 @@ router:
   env:
     NODE_ENV: development
     PORT: 8000
-    API_URL: https://router.geist.im
+    API_URL: https://api.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
@@ -34,7 +34,7 @@ inference:
   env:
     NODE_ENV: development
     PORT: 8001
-    API_URL: https://router.geist.im
+    API_URL: https://api.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
@@ -52,7 +52,7 @@ embeddings:
   env:
     NODE_ENV: development
     PORT: 8002
-    API_URL: https://router.geist.im
+    API_URL: https://api.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
@@ -70,7 +70,7 @@ webapp:
   env:
     NODE_ENV: development
     PORT: 3000
-    API_URL: https://router.geist.im
+    API_URL: https://api.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
@@ -80,7 +80,7 @@ ingress:
   name: geist-development
   router:
     name: geist-router-ingress
-    host: router.geist.im
+    host: api.geist.im
   inference:
     name: geist-inference-ingress
     host: inference.geist.im

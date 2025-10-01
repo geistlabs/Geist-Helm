@@ -28,7 +28,7 @@ Example of how to use cert-manager with ingress resources, showing:
      --namespace cert-manager \
      --create-namespace \
      --version v1.18.2 \
-     --set installCRDs=true
+     --set crds.enabled=true
    ```
 
 2. **Apply ClusterIssuers**:

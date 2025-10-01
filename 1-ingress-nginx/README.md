@@ -15,7 +15,7 @@ helm repo update
 helm install ingress-nginx ingress-nginx/ingress-nginx \
   --namespace ingress-nginx \
   --create-namespace \
-  --version 4.8.3
+  --version 4.12.6
 ```
 
 ## Verification
