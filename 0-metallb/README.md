@@ -15,37 +15,26 @@ helm repo update
 helm install metallb metallb/metallb \
   --namespace metallb-system \
   --create-namespace \
-  --version 0.13.12
+  --version 0.15.2
 ```
 
 ## Configuration
 
-After installation, you need to configure MetalLB with an IP address pool. Create the following configuration:
+After installation, you need to configure MetalLB with an IP address pool. The configuration is split into two files:
 
-```yaml
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: first-pool
-  namespace: metallb-system
-spec:
-  addresses:
-  - 192.168.1.240-192.168.1.250  # Replace with your available IP range
----
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
-  name: example
-  namespace: metallb-system
-spec:
-  ipAddressPools:
-  - first-pool
-```
+- [`ipaddresspool.yaml`](./ipaddresspool.yaml) - Defines the IP address pool
+- [`l2advertisement.yaml`](./l2advertisement.yaml) - Defines the L2 advertisement
+
+**Important**: Update the IP address in `ipaddresspool.yaml` to match your environment:
+- For **Hetzner vSwitch with public subnet**: Use the public IP range assigned to your vSwitch
+- For **single public IP**: Use your master node's public IP (e.g., `5.9.63.248/32`)
+- For **private network**: Use an available private IP range (e.g., `192.168.100.100-192.168.100.110`)
 
 Apply the configuration:
 
 ```bash
-kubectl apply -f metallb-config.yaml
+kubectl apply -f ipaddresspool.yaml
+kubectl apply -f l2advertisement.yaml
 ```
 
 ## Verification
