@@ -1,0 +1,47 @@
+name: Deploy
+
+on:
+  push:
+    branches-ignore:
+      - "**"
+    tags:
+      - "**development**"
+      - "**production**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Extract environment from tag
+        id: extract_environment
+        run: |
+          if [[ "${{ github.ref_name }}" == *"development"* ]]; then
+            ENVIRONMENT="development"
+          elif [[ "${{ github.ref_name }}" == *"production"* ]]; then
+            ENVIRONMENT="production"
+          else
+            echo "Invalid environment"
+            exit 1
+          fi
+
+          echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
+      - name: Install Helm
+        id: install-helm
+        uses: azure/setup-helm@v3
+        with:
+          version: 3.11.0
+
+      - name: Setup Kube Config
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      - name: Switch Contexts
+        run: |
+          KUBECONFIG=$HOME/.kube/config kubectl config use-context ${{ env.ENVIRONMENT }}
+
+      - name: Helm upgrade
+        run: helm upgrade -n ${{ env.ENVIRONMENT }} -f values-${{ env.ENVIRONMENT }}.yaml geist-${{ env.ENVIRONMENT }} .
