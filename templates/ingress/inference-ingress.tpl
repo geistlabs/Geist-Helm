@@ -13,6 +13,7 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:
@@ -26,3 +27,7 @@ spec:
                 name: {{ .Values.inference.service.name }}
                 port:
                   number: {{ .Values.inference.service.port }}
+  tls:
+  - hosts:
+    - {{ .Values.ingress.inference.host }}
+    secretName: {{ .Values.ingress.inference.name }}-tls

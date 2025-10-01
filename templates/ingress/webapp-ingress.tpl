@@ -7,6 +7,7 @@ metadata:
     app: {{ .Values.webapp.name }} 
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:
@@ -19,4 +20,8 @@ spec:
               service:
                 name: {{ .Values.webapp.service.name }} 
                 port:
-                  number: {{ .Values.webapp.service.port }} 
+                  number: {{ .Values.webapp.service.port }}
+  tls:
+  - hosts:
+    - {{ .Values.ingress.webapp.host }}
+    secretName: {{ .Values.ingress.webapp.name }}-tls 

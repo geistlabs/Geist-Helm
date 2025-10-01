@@ -11,6 +11,7 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-origin: "*"
     nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
     nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:
@@ -24,3 +25,7 @@ spec:
                 name: {{ .Values.router.service.name }}
                 port:
                   number: {{ .Values.router.service.port }}
+  tls:
+  - hosts:
+    - {{ .Values.ingress.router.host }}
+    secretName: {{ .Values.ingress.router.name }}-tls

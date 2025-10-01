@@ -1,0 +1,30 @@
+# Example of how to use cert-manager with your ingress resources
+# This shows how to add TLS certificates to your existing ingress templates
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-tls-ingress
+  namespace: development
+  annotations:
+    # This annotation tells cert-manager to create a certificate
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    # Use staging issuer for testing (no rate limits)
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - router.geist.im
+    secretName: router-tls-secret  # cert-manager will create this secret
+  rules:
+  - host: router.geist.im
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: geist-router
+            port:
+              number: 8000
