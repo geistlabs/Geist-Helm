@@ -9,7 +9,7 @@ router:
   image:
     repository: alo42/router
     pullPolicy: Always
-    tag: development-1.0.13
+    tag: development-1.0.14
   service:
     name: geist-router
     port: 8000
@@ -63,7 +63,7 @@ webapp:
   image:
     repository: alo42/webapp
     pullPolicy: Always
-    tag: development-1.0.0
+    tag: development-1.0.3
   service:
     name: geist-webapp
     port: 3000
