@@ -22,9 +22,3 @@ helm upgrade -n production -f values-production.yaml geist-production .
 helm uninstall -n development geist-development .
 helm uninstall -n production geist-production .
 ```
-
-Helm was used to install:
-
-- Ingress Nginx
-- MetaLB
-- Cert-Manager

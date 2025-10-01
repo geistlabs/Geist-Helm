@@ -17,12 +17,17 @@ Example of how to use cert-manager with ingress resources, showing:
 
 ## Usage
 
-1. **Install cert-manager** (already done):
+1. **Install cert-manager**:
    ```bash
+   # Add the Jetstack Helm repository
+   helm repo add jetstack https://charts.jetstack.io
+   helm repo update
+   
+   # Install cert-manager
    helm install cert-manager jetstack/cert-manager \
      --namespace cert-manager \
      --create-namespace \
-     --version v1.16.1 \
+     --version v1.18.2 \
      --set installCRDs=true
    ```
 
