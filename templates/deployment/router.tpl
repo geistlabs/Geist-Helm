@@ -15,6 +15,8 @@ spec:
       labels:
         app: {{ .Values.router.name }}
     spec:
+      nodeSelector:
+        whisper: "true"
       containers:
         - name: {{ .Values.router.name }}
           image: "{{ .Values.router.image.repository   }}:{{ .Values.router.image.tag   }}"
