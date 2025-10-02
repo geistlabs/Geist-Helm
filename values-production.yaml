@@ -20,6 +20,24 @@ router:
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
+  # Speech-to-Text (Whisper) configuration
+  whisper:
+    enabled: true
+    modelPath: /models/ggml-base.bin
+    binaryPath: /usr/local/bin/whisper-cli
+
+  # Optional volume mounts (used when whisper.enabled=true)
+  volumeMounts:
+    - name: stt-models
+      mountPath: /models
+      readOnly: true
+
+  # Volumes for the pod (hostPath, same pattern as LLM)
+  volumes:
+    - name: stt-models
+      hostPath:
+        path: /root/whisper-models
+
 # Inference Service (inference.geist.im)
 inference:
   name: geist-inference
