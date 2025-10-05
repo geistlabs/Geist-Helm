@@ -8,7 +8,7 @@ router:
   image:
     repository: alo42/router
     pullPolicy: Always
-    tag: development-1.0.25
+    tag: development-1.0.26
   service:
     name: geist-router
     port: 8000
@@ -44,7 +44,7 @@ whisper:
   image:
     repository: alo42/whisper-stt
     pullPolicy: Always
-    tag: development-latest
+    tag: development-1.0.2
   service:
     name: whisper-stt-service
     port: 8000
