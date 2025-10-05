@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.whisperStt.service.name }}
+  name: {{ .Values.whisper.service.name }}
   namespace: {{ .Values.namespace }}
   labels:
-    app: {{ .Values.whisperStt.name }}
+    app: {{ .Values.whisper.name }}
 spec:
   selector:
-    app: {{ .Values.whisperStt.name }}
+    app: {{ .Values.whisper.name }}
   ports:
-    - port: {{ .Values.whisperStt.service.port }}
+    - port: {{ .Values.whisper.service.port }}
       name: http

@@ -1,10 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.whisperStt.ingress.name }}
+  name: {{ .Values.whisper.ingress.name }}
   namespace: {{ .Values.namespace }}
   labels:
-    app: {{ .Values.whisperStt.name }}
+    app: {{ .Values.whisper.name }}
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
@@ -12,16 +12,16 @@ metadata:
 spec:
   tls:
     - hosts:
-        - {{ .Values.whisperStt.ingress.host }}
-      secretName: {{ .Values.whisperStt.ingress.secretName }}
+        - {{ .Values.whisper.ingress.host }}
+      secretName: {{ .Values.whisper.ingress.secretName }}
   rules:
-    - host: {{ .Values.whisperStt.ingress.host }}
+    - host: {{ .Values.whisper.ingress.host }}
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.whisperStt.service.name }}
+                name: {{ .Values.whisper.service.name }}
                 port:
-                  number: {{ .Values.whisperStt.service.port }}
+                  number: {{ .Values.whisper.service.port }}

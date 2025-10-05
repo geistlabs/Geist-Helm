@@ -38,7 +38,7 @@ inference:
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 # Whisper STT Service (whisper-stt.geist.im)
-whisperStt:
+whisper:
   name: geist-whisper-stt
   replicas: 1
   image:

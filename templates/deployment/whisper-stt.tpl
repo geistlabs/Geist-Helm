@@ -1,37 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.whisperStt.name }}
+  name: {{ .Values.whisper.name }}
   namespace: {{ .Values.namespace }}
   labels:
-    app: {{ .Values.whisperStt.name }}
+    app: {{ .Values.whisper.name }}
 spec:
-  replicas: {{ .Values.whisperStt.replicas }}
+  replicas: {{ .Values.whisper.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.whisperStt.name }}
+      app: {{ .Values.whisper.name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.whisperStt.name }}
+        app: {{ .Values.whisper.name }}
     spec:
       nodeSelector:
         nvidia.com/gpu: "true"
       containers:
-        - name: {{ .Values.whisperStt.name }}
-          image: "{{ .Values.whisperStt.image.repository }}:{{ .Values.whisperStt.image.tag }}"
-          imagePullPolicy: {{ .Values.whisperStt.image.pullPolicy }}
+        - name: {{ .Values.whisper.name }}
+          image: "{{ .Values.whisper.image.repository }}:{{ .Values.whisper.image.tag }}"
+          imagePullPolicy: {{ .Values.whisper.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.whisperStt.service.port }}
+            - containerPort: {{ .Values.whisper.service.port }}
           env:
             - name: NODE_ENV
-              value: {{ .Values.whisperStt.env.NODE_ENV }}
+              value: {{ .Values.whisper.env.NODE_ENV }}
             - name: PORT
-              value: {{ .Values.whisperStt.env.PORT | quote }}
+              value: {{ .Values.whisper.env.PORT | quote }}
             - name: WHISPER_BINARY_PATH
-              value: {{ .Values.whisperStt.env.WHISPER_BINARY_PATH }}
+              value: {{ .Values.whisper.env.WHISPER_BINARY_PATH }}
             - name: WHISPER_MODEL_PATH
-              value: {{ .Values.whisperStt.env.WHISPER_MODEL_PATH }}
+              value: {{ .Values.whisper.env.WHISPER_MODEL_PATH }}
             # GPU-specific environment variables
             - name: CUDA_VISIBLE_DEVICES
               value: "0"
@@ -49,4 +49,4 @@ spec:
       volumes:
         - name: whisper-models-volume
           hostPath:
-            path: {{ .Values.whisperStt.models.hostPath }}
+            path: {{ .Values.whisper.models.hostPath }}
