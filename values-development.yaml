@@ -100,3 +100,6 @@ ingress:
   webapp:
     name: geist-webapp-ingress
     host: webapp.geist.im
+whisper-stt:
+  image:
+    tag: development-1.0.2
