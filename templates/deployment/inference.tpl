@@ -41,12 +41,12 @@ spec:
               value: "all"
             - name: GPU_LAYERS
               value: "8"
-          # GPU resource requests and limits
+          # GPU resource requests and limits (3 slices = 75% of GPU)
           resources:
             requests:
-              nvidia.com/gpu: 1
+              nvidia.com/gpu: 3
             limits:
-              nvidia.com/gpu: 1
+              nvidia.com/gpu: 3
           volumeMounts:
             - name: models-volume
               mountPath: /models

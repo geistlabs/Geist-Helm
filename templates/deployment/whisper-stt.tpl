@@ -37,7 +37,7 @@ spec:
               value: "0"
             - name: NVIDIA_VISIBLE_DEVICES
               value: "all"
-          # GPU resource requests and limits
+          # GPU resource requests and limits (1 slice = 25% of GPU)
           resources:
             requests:
               nvidia.com/gpu: 1
