@@ -27,7 +27,7 @@ inference:
   image:
     repository: alo42/inference
     pullPolicy: Always
-    tag: latest
+    tag: development-1.0.8
   service:
     name: geist-inference
     port: 8080
@@ -59,7 +59,6 @@ whisper:
     name: whisper-stt-ingress
     host: whisper-stt.geist.im
     secretName: whisper-stt-tls
-
 # Embeddings Service (embeddings.geist.im)
 embeddings:
   name: geist-embeddings
