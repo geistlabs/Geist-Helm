@@ -7,6 +7,11 @@ metadata:
     app: {{ .Values.whisper.name }}
 spec:
   replicas: {{ .Values.whisper.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
   selector:
     matchLabels:
       app: {{ .Values.whisper.name }}
