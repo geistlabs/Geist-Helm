@@ -66,7 +66,7 @@ embeddings:
   image:
     repository: alo42/embeddings
     pullPolicy: Always
-    tag: development-1.0.2
+    tag: development-1.0.7
   service:
     name: geist-embeddings
     port: 8001
