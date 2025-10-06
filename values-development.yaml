@@ -8,7 +8,7 @@ router:
   image:
     repository: alo42/router
     pullPolicy: Always
-    tag: development-1.1.1
+    tag: development-1.1.2
   service:
     name: geist-router
     port: 8000
