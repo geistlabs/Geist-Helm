@@ -7,6 +7,11 @@ metadata:
     app: {{ .Values.inference.name }}
 spec:
   replicas: {{ .Values.inference.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
   selector:
     matchLabels:
       app: {{ .Values.inference.name }}
