@@ -44,7 +44,7 @@ whisper:
   image:
     repository: alo42/whisper-stt
     pullPolicy: Always
-    tag: development-1.0.2
+    tag: development-1.0.3
   service:
     name: whisper-stt-service
     port: 8000
