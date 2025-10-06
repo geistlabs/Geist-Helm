@@ -18,21 +18,8 @@ router:
     API_URL: https://api.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
-  # Speech-to-Text (Whisper) configuration
-  whisper:
-    enabled: true
-    modelPath: /models/ggml-base.bin
-    binaryPath: /usr/local/bin/whisper-cli
-  # Optional volume mounts (used when whisper.enabled=true)
-  volumeMounts:
-    - name: stt-models
-      mountPath: /models
-      readOnly: true
-  # Volumes for the pod (hostPath, same pattern as LLM)
-  volumes:
-    - name: stt-models
-      hostPath:
-        path: /root/whisper-models
+  # Whisper STT service URL (external service)
+  whisperServiceUrl: http://whisper-stt-service:8000
 # Inference Service (inference.geist.im)
 inference:
   name: geist-inference
@@ -50,6 +37,29 @@ inference:
     API_URL: https://api.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
+# Whisper STT Service (whisper-stt.geist.im)
+whisper:
+  name: geist-whisper-stt
+  replicas: 1
+  image:
+    repository: alo42/whisper-stt
+    pullPolicy: Always
+    tag: development-1.0.3
+  service:
+    name: whisper-stt-service
+    port: 8000
+  env:
+    NODE_ENV: development
+    PORT: 8000
+    WHISPER_BINARY_PATH: /usr/local/bin/whisper-cli
+    WHISPER_MODEL_PATH: /models/ggml-base.bin
+  models:
+    hostPath: /root/whisper-models
+  ingress:
+    name: whisper-stt-ingress
+    host: whisper-stt.geist.im
+    secretName: whisper-stt-tls
+
 # Embeddings Service (embeddings.geist.im)
 embeddings:
   name: geist-embeddings

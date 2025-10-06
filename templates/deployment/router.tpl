@@ -15,8 +15,6 @@ spec:
       labels:
         app: {{ .Values.router.name }}
     spec:
-      nodeSelector:
-        whisper: "true"
       containers:
         - name: {{ .Values.router.name }}
           image: "{{ .Values.router.image.repository   }}:{{ .Values.router.image.tag   }}"
@@ -34,17 +32,5 @@ spec:
               value: {{ .Values.router.env.INFERENCE_URL }}
             - name: EMBEDDINGS_URL
               value: {{ .Values.router.env.EMBEDDINGS_URL }}
-            {{- if .Values.router.whisper.enabled }}
-            - name: WHISPER_MODEL_PATH
-              value: {{ .Values.router.whisper.modelPath }}
-            - name: WHISPER_BINARY_PATH
-              value: {{ .Values.router.whisper.binaryPath }}
-            {{- end }}
-          {{- if .Values.router.volumeMounts }}
-          volumeMounts:
-            {{- toYaml .Values.router.volumeMounts | nindent 12 }}
-          {{- end }}
-      {{- if .Values.router.volumes }}
-      volumes:
-        {{- toYaml .Values.router.volumes | nindent 8 }}
-      {{- end }}
+            - name: WHISPER_SERVICE_URL
+              value: {{ .Values.router.whisperServiceUrl }}
