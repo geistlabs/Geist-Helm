@@ -27,7 +27,7 @@ inference:
   image:
     repository: alo42/inference
     pullPolicy: Always
-    tag: development-1.0.8
+    tag: development-1.0.11
   service:
     name: geist-inference
     port: 8080
