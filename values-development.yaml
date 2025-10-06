@@ -102,4 +102,4 @@ ingress:
     host: webapp.geist.im
 whisper-stt:
   image:
-    tag: development-1.0.3
+    tag: development-1.0.4
