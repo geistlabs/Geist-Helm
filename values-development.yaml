@@ -44,7 +44,7 @@ whisper:
   image:
     repository: alo42/whisper-stt
     pullPolicy: Always
-    tag: development-1.0.3
+    tag: development-1.0.4
   service:
     name: whisper-stt-service
     port: 8000
@@ -109,6 +109,3 @@ ingress:
   webapp:
     name: geist-webapp-ingress
     host: webapp.geist.im
-whisper-stt:
-  image:
-    tag: development-1.0.4
