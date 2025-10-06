@@ -83,7 +83,7 @@ webapp:
   image:
     repository: alo42/webapp
     pullPolicy: Always
-    tag: development-1.0.5
+    tag: development-1.0.6
   service:
     name: geist-webapp
     port: 3000
