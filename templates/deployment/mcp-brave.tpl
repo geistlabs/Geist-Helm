@@ -28,4 +28,4 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: brave-api-key
-                  key: api-key
+                  key: BRAVE_API_KEY

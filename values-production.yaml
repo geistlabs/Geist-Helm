@@ -19,6 +19,7 @@ router:
     API_URL: https://router.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
+    MCP_BRAVE_URL: http://mcp-brave:8000
 
   # Whisper STT service URL (external service)
   whisperServiceUrl: http://whisper-stt-service:8000
