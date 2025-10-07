@@ -100,6 +100,20 @@ webapp:
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
+# MCP Brave Service (mcp-brave.geist.im)
+mcpBrave:
+  name: mcp-brave
+  replicas: 2
+  image:
+    repository: alo42/mcp-brave
+    pullPolicy: Always
+    tag: production-latest
+  service:
+    name: mcp-brave
+    port: 8000
+  env:
+    BRAVE_MCP_TRANSPORT: http
+
 # Ingress Configuration
 ingress:
   ingressClassName: nginx
@@ -116,3 +130,6 @@ ingress:
   webapp:
     name: geist-webapp-ingress
     host: webapp.geist.im
+  mcpBrave:
+    name: mcp-brave-ingress
+    host: mcp-brave.geist.im

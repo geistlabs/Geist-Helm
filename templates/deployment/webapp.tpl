@@ -26,9 +26,3 @@ spec:
               value: {{ .Values.webapp.env.NODE_ENV }}
             - name: PORT
               value: {{ .Values.webapp.env.PORT | quote }}
-            - name: API_URL
-              value: {{ .Values.webapp.env.API_URL }}
-            - name: INFERENCE_URL
-              value: {{ .Values.webapp.env.INFERENCE_URL }}
-            - name: EMBEDDINGS_URL
-              value: {{ .Values.webapp.env.EMBEDDINGS_URL }}

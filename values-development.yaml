@@ -15,9 +15,9 @@ router:
   env:
     NODE_ENV: development
     PORT: 8000
-    API_URL: https://api.geist.im
-    INFERENCE_URL: https://inference.geist.im
-    EMBEDDINGS_URL: https://embeddings.geist.im
+    API_URL: http://geist-router:8000
+    INFERENCE_URL: http://geist-inference:8080
+    EMBEDDINGS_URL: http://geist-embeddings:8001
   # Whisper STT service URL (external service)
   whisperServiceUrl: http://whisper-stt-service:8000
 # Inference Service (inference.geist.im)
@@ -90,9 +90,19 @@ webapp:
   env:
     NODE_ENV: development
     PORT: 3000
-    API_URL: https://api.geist.im
-    INFERENCE_URL: https://inference.geist.im
-    EMBEDDINGS_URL: https://embeddings.geist.im
+# MCP Brave Service (mcp-brave.geist.im)
+mcpBrave:
+  name: mcp-brave
+  replicas: 1
+  image:
+    repository: alo42/mcp-brave
+    pullPolicy: Always
+    tag: development-latest
+  service:
+    name: mcp-brave
+    port: 8000
+  env:
+    BRAVE_MCP_TRANSPORT: http
 # Ingress Configuration
 ingress:
   ingressClassName: nginx
@@ -109,3 +119,6 @@ ingress:
   webapp:
     name: geist-webapp-ingress
     host: webapp.geist.im
+  mcpBrave:
+    name: mcp-brave-ingress
+    host: mcp-brave.geist.im
