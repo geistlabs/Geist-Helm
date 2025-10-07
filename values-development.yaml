@@ -19,6 +19,7 @@ router:
     INFERENCE_URL: http://geist-inference:8080
     EMBEDDINGS_URL: http://geist-embeddings:8001
     MCP_BRAVE_URL: http://mcp-brave:8000
+    MCP_FETCH_URL: http://mcp-fetch:8000
   # Whisper STT service URL (external service)
   whisperServiceUrl: http://whisper-stt-service:8000
 # Inference Service (inference.geist.im)

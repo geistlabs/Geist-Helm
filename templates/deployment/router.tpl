@@ -34,5 +34,7 @@ spec:
               value: {{ .Values.router.env.EMBEDDINGS_URL }}
             - name: MCP_BRAVE_URL
               value: {{ .Values.router.env.MCP_BRAVE_URL }}
+            - name: MCP_FETCH_URL
+              value: {{ .Values.router.env.MCP_FETCH_URL }}
             - name: WHISPER_SERVICE_URL
               value: {{ .Values.router.whisperServiceUrl }}
