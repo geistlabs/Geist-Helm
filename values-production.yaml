@@ -115,6 +115,18 @@ mcpBrave:
   env:
     BRAVE_MCP_TRANSPORT: http
 
+# MCP Fetch Service (mcp-fetch.geist.im)
+mcpFetch:
+  name: mcp-fetch
+  replicas: 2
+  image:
+    repository: mcp/fetch
+    pullPolicy: Always
+    tag: latest
+  service:
+    name: mcp-fetch
+    port: 8000
+
 # Ingress Configuration
 ingress:
   ingressClassName: nginx
@@ -134,3 +146,6 @@ ingress:
   mcpBrave:
     name: mcp-brave-ingress
     host: mcp-brave.geist.im
+  mcpFetch:
+    name: mcp-fetch-ingress
+    host: mcp-fetch.geist.im
