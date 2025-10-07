@@ -21,7 +21,7 @@ spec:
           imagePullPolicy: {{ .Values.mcpFetch.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.mcpFetch.service.port }}
-          command: ["sh", "-c", "pip install mcp-http-bridge && mcp-http-bridge --command 'python -m mcp_server_fetch' --port {{ .Values.mcpFetch.service.port }}"]
+          command: ["sh", "-c", "pip install mcp-http-bridge && mcp-http-bridge --command 'python -m mcp_server_fetch' --port {{ .Values.mcpFetch.service.port }} --host 0.0.0.0"]
           env:
             - name: PORT
               value: "{{ .Values.mcpFetch.service.port }}"
