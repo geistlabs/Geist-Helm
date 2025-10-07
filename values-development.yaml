@@ -102,7 +102,7 @@ mcpBrave:
     tag: latest
   service:
     name: mcp-brave
-    port: 8000
+    port: 8080
   env:
     BRAVE_MCP_TRANSPORT: http
 # MCP Fetch Service (mcp-fetch.geist.im)

@@ -24,6 +24,8 @@ spec:
           env:
             - name: BRAVE_MCP_TRANSPORT
               value: {{ .Values.mcpBrave.env.BRAVE_MCP_TRANSPORT }}
+            - name: PORT
+              value: "{{ .Values.mcpBrave.service.port }}"
             - name: BRAVE_API_KEY
               valueFrom:
                 secretKeyRef:
