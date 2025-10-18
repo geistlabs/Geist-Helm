@@ -37,6 +37,6 @@ spec:
             - name: MCP_FETCH_URL
               value: {{ .Values.router.env.MCP_FETCH_URL }}
             - name: ENABLE_TOOL_CALLS
-              value: {{ .Values.router.env.ENABLE_TOOL_CALLS }}
+              value: {{ .Values.router.env.ENABLE_TOOL_CALLS | quote }}
             - name: WHISPER_SERVICE_URL
               value: {{ .Values.router.whisperServiceUrl }}
