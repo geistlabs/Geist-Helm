@@ -43,16 +43,16 @@ inference:
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
 
-# Memory Extraction Service (memory-extraction.geist.im)
-memory_extraction:
-  name: geist-memory-extraction
+# Memory Service (memory.geist.im)
+memory:
+  name: geist-memory
   replicas: 2
   image:
-    repository: alo42/memory-extraction
+    repository: alo42/memory
     pullPolicy: Always
     tag: production-latest
   service:
-    name: geist-memory-extraction
+    name: geist-memory
     port: 8003
   env:
     NODE_ENV: production
@@ -156,9 +156,9 @@ ingress:
   inference:
     name: geist-inference-ingress
     host: inference.geist.im
-  memory_extraction:
-    name: geist-memory-extraction-ingress
-    host: memory-extraction.geist.im
+  memory:
+    name: geist-memory-ingress
+    host: memory.geist.im
   embeddings:
     name: geist-embeddings-ingress
     host: embeddings.geist.im

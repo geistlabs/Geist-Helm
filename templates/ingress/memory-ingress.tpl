@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.ingress.memory_extraction.name }}
+  name: {{ .Values.ingress.memory.name }}
   namespace: {{ .Values.namespace }}
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -16,17 +16,17 @@ metadata:
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:
-    - host: {{ .Values.ingress.memory_extraction.host }}
+    - host: {{ .Values.ingress.memory.host }}
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.memory_extraction.service.name }}
+                name: {{ .Values.memory.service.name }}
                 port:
-                  number: {{ .Values.memory_extraction.service.port }}
+                  number: {{ .Values.memory.service.port }}
   tls:
   - hosts:
-    - {{ .Values.ingress.memory_extraction.host }}
-    secretName: {{ .Values.ingress.memory_extraction.name }}-tls
+    - {{ .Values.ingress.memory.host }}
+    secretName: {{ .Values.ingress.memory.name }}-tls
