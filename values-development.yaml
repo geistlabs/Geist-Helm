@@ -40,6 +40,17 @@ inference:
     API_URL: https://api.geist.im
     INFERENCE_URL: https://inference.geist.im
     EMBEDDINGS_URL: https://embeddings.geist.im
+# Memory Extraction Service (memory-extraction.geist.im)
+memory_extraction:
+  name: geist-memory-extraction
+  replicas: 1
+  image:
+    repository: alo42/memory-extraction
+    pullPolicy: Always
+    tag: development-1.0.0
+  service:
+    name: geist-memory-extraction
+    port: 8081
 # Whisper STT Service (whisper-stt.geist.im)
 whisper:
   name: geist-whisper-stt
@@ -127,6 +138,9 @@ ingress:
   inference:
     name: geist-inference-ingress
     host: inference.geist.im
+  memory_extraction:
+    name: geist-memory-extraction-ingress
+    host: memory-extraction.geist.im
   embeddings:
     name: geist-embeddings-ingress
     host: embeddings.geist.im
