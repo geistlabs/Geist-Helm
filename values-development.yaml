@@ -47,7 +47,7 @@ memory:
   image:
     repository: alo42/memory
     pullPolicy: Always
-    tag: development-1.0.0
+    tag: development-1.0.2
   service:
     name: geist-memory
     port: 8081
