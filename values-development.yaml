@@ -51,6 +51,8 @@ memory:
   service:
     name: geist-memory
     port: 8080
+  env:
+    PORT: 8080
 # Whisper STT Service (whisper-stt.geist.im)
 whisper:
   name: geist-whisper-stt
