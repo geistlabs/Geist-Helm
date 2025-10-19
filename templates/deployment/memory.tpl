@@ -28,6 +28,9 @@ spec:
           imagePullPolicy: {{ .Values.memory.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.memory.service.port }}
+          {{- if .Values.memory.env }}
+          env:
+						PORT: {{ .Values.memory.service.port }}
           volumeMounts:
             - name: models-volume
               mountPath: /models

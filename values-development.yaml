@@ -50,7 +50,7 @@ memory:
     tag: development-1.0.3
   service:
     name: geist-memory
-    port: 8081
+    port: 8080
 # Whisper STT Service (whisper-stt.geist.im)
 whisper:
   name: geist-whisper-stt

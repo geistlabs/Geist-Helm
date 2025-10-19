@@ -55,11 +55,7 @@ memory:
     name: geist-memory
     port: 8003
   env:
-    NODE_ENV: production
-    PORT: 8003
-    API_URL: https://router.geist.im
-    INFERENCE_URL: https://inference.geist.im
-    EMBEDDINGS_URL: https://embeddings.geist.im
+    PORT: 8080
 
 # Whisper STT Service (whisper-stt.geist.im)
 whisper:
