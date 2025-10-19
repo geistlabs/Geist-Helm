@@ -153,3 +153,6 @@ ingress:
   mcpFetch:
     name: mcp-fetch-ingress
     host: mcp-fetch.geist.im
+memory-extraction:
+  image:
+    tag: development-1.0.0
