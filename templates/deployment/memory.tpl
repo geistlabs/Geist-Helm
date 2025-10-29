@@ -21,7 +21,7 @@ spec:
         app: {{ .Values.memory.name }}
     spec:
       nodeSelector:
-        nvidia.com/gpu: "true"
+        splitgpu: "true"
       containers:
         - name: {{ .Values.memory.name }}
           image: "{{ .Values.memory.image.repository   }}:{{ .Values.memory.image.tag   }}"

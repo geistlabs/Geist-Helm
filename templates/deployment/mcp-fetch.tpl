@@ -15,6 +15,8 @@ spec:
       labels:
         app: {{ .Values.mcpFetch.name }}
     spec:
+      nodeSelector:
+        splitgpu: "true"
       containers:
         - name: {{ .Values.mcpFetch.name }}
           image: "{{ .Values.mcpFetch.image.repository }}:{{ .Values.mcpFetch.image.tag }}"

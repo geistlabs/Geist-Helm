@@ -15,6 +15,8 @@ spec:
       labels:
         app: {{ .Values.mcpBrave.name }}
     spec:
+      nodeSelector:
+        splitgpu: "true"
       containers:
         - name: {{ .Values.mcpBrave.name }}
           image: "{{ .Values.mcpBrave.image.repository }}:{{ .Values.mcpBrave.image.tag }}"
